@@ -7,10 +7,8 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import toothpick.Scope
 import toothpick.Toothpick
-import javax.inject.Inject
 
 abstract class BaseFragment : Fragment(), Refreshable, OnBackPressedListener {
 
@@ -28,8 +26,6 @@ abstract class BaseFragment : Fragment(), Refreshable, OnBackPressedListener {
 
     protected val refreshLayout: SwipeRefreshLayout?
         get() = (activity as? BaseNavigatorActivity)?.swipeRefreshLayout
-
-    @Inject lateinit var imm: InputMethodManager
 
     override var isAttached = false
     override var isRefreshing: Boolean
@@ -70,8 +66,6 @@ abstract class BaseFragment : Fragment(), Refreshable, OnBackPressedListener {
     override fun onDestroyView() {
         isAttached = false
         super.onDestroyView()
-        val view = activity?.currentFocus ?: return
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     override fun onDestroy() {
