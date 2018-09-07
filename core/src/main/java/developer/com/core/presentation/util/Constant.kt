@@ -1,6 +1,11 @@
 package developer.com.core.presentation.util
 
 object Constant {
+
+    object ResultCode {
+        const val SKIP_SCREEN = 5257
+    }
+
     const val SEMICOLON = ";"
     const val COLON = ":"
     const val SPACE = " "
