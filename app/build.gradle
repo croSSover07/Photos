@@ -14,6 +14,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        all {
+            buildConfigField "String", "API_URL", '"https://api.unsplash.com/"'
+            buildConfigField "String", "ACCESS_KEY", '"8fff53d2a95e4748487afe13bb8d52cee104cddb6004119b61bfc141bb674500"'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -33,6 +37,14 @@ dependencies {
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpick_version"
     implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpick_version"
     kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpick_version"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version") {
+        exclude module: 'okhttp'
+    }
 
     implementation "ru.terrakok.cicerone:cicerone:3.0.0"
 

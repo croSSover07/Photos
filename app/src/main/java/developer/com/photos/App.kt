@@ -2,6 +2,7 @@ package developer.com.photos
 
 import android.app.Application
 import developer.com.photos.di.AppModule
+import developer.com.photos.di.NetworkModule
 import toothpick.Scope
 import toothpick.Toothpick
 import toothpick.configuration.Configuration
@@ -24,7 +25,7 @@ class App : Application() {
         Toothpick.setConfiguration(configuration)
 
         SCOPE = Toothpick.openScope(this).also {
-            it.installModules(AppModule(this))
+            it.installModules(AppModule(this), NetworkModule())
         }
     }
 }
