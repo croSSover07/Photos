@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="256dp"
     android:layout_margin="@dimen/spacing"
-    android:layout_height="@dimen/spacing_x7"
-    android:background="@android:color/holo_red_dark"
-    android:orientation="vertical">
-</LinearLayout>
+    android:background="@android:color/white"
+    android:elevation="@dimen/spacing_d2"
+    android:orientation="vertical"
+    tools:background="@android:color/holo_red_dark">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/titleText"
+        tools:background="@android:color/holo_orange_light"/>
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/spacing"
+        android:textColor="@android:color/black"
+        tools:text="A man drinking a coffee."/>
+</RelativeLayout>

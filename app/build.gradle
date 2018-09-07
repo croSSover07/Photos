@@ -34,6 +34,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support:recyclerview-v7:$support_version"
 
+    implementation "com.github.bumptech.glide:glide:3.8.0"
+
     implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpick_version"
     implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpick_version"
     kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpick_version"

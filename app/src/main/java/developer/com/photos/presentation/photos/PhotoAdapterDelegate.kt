@@ -5,6 +5,7 @@ import developer.com.core.presentation.base.adapter.ViewHolder
 import developer.com.core.presentation.base.adapter.delegate.TypedProviderDelegate
 import developer.com.core.presentation.base.provider.GetableProvider
 import developer.com.photos.data.model.Photo
+import developer.com.photos.extension.load
 
 class PhotoAdapterDelegate(
     provider: GetableProvider<Photo>,
@@ -19,5 +20,9 @@ class PhotoAdapterDelegate(
         holder: PhotoViewHolder,
         provider: GetableProvider<Photo>,
         item: Photo
-    ) = Unit
+    ) {
+        // TODO()
+        holder.image.load("")
+        holder.title.text = ""
+    }
 }

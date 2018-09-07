@@ -27,4 +27,5 @@ object Constant {
     const val TEXT_PLAIN = "text/plain"
     const val TYPE_JPEG = "jpg"
     const val SPACE_C = ' '
+    const val NO_ID = -1
 }
