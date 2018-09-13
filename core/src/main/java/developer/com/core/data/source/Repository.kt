@@ -1,11 +1,10 @@
 package developer.com.core.data.source
 
-import developer.com.core.data.net.BaseApi
 import developer.com.core.data.net.ServerCallback
 import developer.com.core.data.net.ServerError
 import retrofit2.Call
 
-abstract class Repository<T, R>(protected val api: BaseApi) : DataSource() {
+abstract class Repository<T, R> : DataSource() {
 
     protected abstract val request: Call<T>
 

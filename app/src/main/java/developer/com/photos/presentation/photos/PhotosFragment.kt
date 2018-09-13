@@ -1,5 +1,7 @@
 package developer.com.photos.presentation.photos
 
+import android.os.Bundle
+import android.view.View
 import developer.com.core.presentation.base.BaseListFragment
 import developer.com.core.presentation.base.adapter.RecyclerAdapter
 import developer.com.photos.R
@@ -13,7 +15,12 @@ class PhotosFragment : BaseListFragment(), PhotosContract.View {
 
     @Inject lateinit var presenter: PhotosContract.Presenter
 
-    override fun installModules(scope: Scope)  = scope.installModules(PhotosModule(this))
+    override fun installModules(scope: Scope) = scope.installModules(PhotosModule(this))
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        presenter.start()
+    }
 
     override fun createAdapter() = RecyclerAdapter(
         listOf(PhotoAdapterDelegate(presenter.provider, this)),
