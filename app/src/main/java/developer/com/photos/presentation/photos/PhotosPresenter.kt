@@ -8,6 +8,7 @@ import developer.com.photos.data.net.Api
 import developer.com.photos.util.AppExecutor
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
+import retrofit2.HttpException
 import ru.gildor.coroutines.retrofit.await
 import javax.inject.Inject
 
@@ -25,10 +26,21 @@ class PhotosPresenter @Inject constructor(
         request()
     }
 
+    override fun refresh() {
+        request()
+    }
+
     private fun request() {
         launch(executor.ui, parent = job) {
-            provider.addAll(api.photos().await(), true)
-            view?.update()
+            try {
+                view?.isRefreshing = true
+                provider.addAll(api.photos().await(), true)
+                view?.update()
+            } catch (e: HttpException) {
+                router.showSystemMessage(e.message)
+            } finally {
+                view?.isRefreshing = false
+            }
         }
     }
 }

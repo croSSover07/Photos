@@ -1,6 +1,7 @@
 package developer.com.photos.presentation.photos
 
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.view.View
 import developer.com.core.presentation.base.BaseListFragment
 import developer.com.core.presentation.base.adapter.RecyclerAdapter
@@ -9,7 +10,8 @@ import developer.com.photos.di.PhotosModule
 import toothpick.Scope
 import javax.inject.Inject
 
-class PhotosFragment : BaseListFragment(), PhotosContract.View {
+class PhotosFragment : BaseListFragment(), PhotosContract.View,
+    SwipeRefreshLayout.OnRefreshListener {
 
     override val toolbarTitleRes = R.string.photos
 
@@ -26,4 +28,8 @@ class PhotosFragment : BaseListFragment(), PhotosContract.View {
         listOf(PhotoAdapterDelegate(presenter.provider, this)),
         presenter.provider
     )
+
+    override fun onRefresh() {
+        presenter.refresh()
+    }
 }
