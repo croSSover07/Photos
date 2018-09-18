@@ -5,4 +5,5 @@ object Key {
     const val PER_PAGE = "per_page"
     const val ORDER_BY = "order_by"
     const val QUERY = "query"
+    const val ID = "id"
 }

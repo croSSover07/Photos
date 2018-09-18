@@ -3,6 +3,7 @@ package developer.com.photos.presentation.photos
 import developer.com.core.presentation.base.Presenter
 import developer.com.core.presentation.base.flow.FlowRouter
 import developer.com.core.presentation.base.provider.MutableListProvider
+import developer.com.photos.Screen
 import developer.com.photos.data.model.Photo
 import developer.com.photos.data.net.Api
 import developer.com.photos.util.AppExecutor
@@ -28,6 +29,10 @@ class PhotosPresenter @Inject constructor(
 
     override fun refresh() {
         request()
+    }
+
+    override fun navigateTo(position: Int) {
+        router.navigateTo(Screen.Main.Photo(provider[position]?.id ?: return))
     }
 
     private fun request() {

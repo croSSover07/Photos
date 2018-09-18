@@ -22,6 +22,10 @@ interface Updatable : Attachable {
 interface Refreshable : Attachable {
     var isRefreshing: Boolean
 }
+
+interface Titleable {
+    fun updateTitle(title: String)
+}
 // endregion
 
 // region Presenter

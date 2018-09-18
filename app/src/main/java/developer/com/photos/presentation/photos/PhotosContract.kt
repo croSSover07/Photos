@@ -11,5 +11,6 @@ interface PhotosContract {
     interface View : Updatable, Refreshable
     interface Presenter : Starting, Refreshing {
         val provider: GetableProvider<Photo>
+        fun navigateTo(position: Int)
     }
 }

@@ -8,5 +8,6 @@ sealed class Screen : BaseScreen {
 
     interface Main {
         object Photos : Screen()
+        class Photo(val id: String): Screen()
     }
 }

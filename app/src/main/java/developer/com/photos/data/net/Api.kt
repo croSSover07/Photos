@@ -5,6 +5,7 @@ import developer.com.photos.data.model.Photo
 import developer.com.photos.data.model.ResponsePhotos
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Api {
@@ -21,4 +22,7 @@ interface Api {
         @Query(Key.PAGE) page: Int = 1,
         @Query(Key.PER_PAGE) perPage: Int = 10
     ): Call<ResponsePhotos>
+
+    @GET("/photos/{id}")
+    fun photo(@Path(Key.ID) id: String): Call<Photo>
 }

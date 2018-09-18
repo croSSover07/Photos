@@ -10,6 +10,7 @@ import developer.com.core.presentation.base.flow.FlowNavigator
 import developer.com.photos.R
 import developer.com.photos.Screen
 import developer.com.photos.di.MainModule
+import developer.com.photos.presentation.photo.PhotoFragment
 import developer.com.photos.presentation.photos.PhotosFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import toothpick.Scope
@@ -40,6 +41,7 @@ class MainActivity : BaseNavigatorActivity(), MainContract.View {
         override fun createActivityIntent(context: Context, screen: BaseScreen): Intent? = null
         override fun createFragment(screen: BaseScreen) = when (screen) {
             is Screen.Main.Photos -> PhotosFragment()
+            is Screen.Main.Photo -> PhotoFragment.newInstance(screen.id)
             else -> error("Unknown screen: ${screen.getKey()}")
         }
     }
