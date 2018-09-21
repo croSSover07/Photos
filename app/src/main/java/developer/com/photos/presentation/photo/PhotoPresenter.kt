@@ -5,6 +5,7 @@ import developer.com.photos.data.model.Photo
 import developer.com.photos.data.net.Api
 import developer.com.photos.di.qualifier.PhotoId
 import developer.com.photos.util.AppExecutor
+import developer.com.photos.util.WallPaperManager
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
 import retrofit2.HttpException
@@ -17,7 +18,8 @@ class PhotoPresenter @Inject constructor(
     @PhotoId val photoId: String,
     private val api: Api,
     private val router: Router,
-    private val job: Job
+    private val job: Job,
+    private val wallpaperManager: WallPaperManager
 ) : Presenter<PhotoContract.View>(v), PhotoContract.Presenter {
 
     private val executor = AppExecutor()
@@ -31,6 +33,10 @@ class PhotoPresenter @Inject constructor(
                 v.updateTitle(it.description)
             }
         } ?: request()
+    }
+
+    override fun setWallpaper() {
+        wallpaperManager.setWallpaper(photo?.urls?.full ?: return)
     }
 
     private fun request() {

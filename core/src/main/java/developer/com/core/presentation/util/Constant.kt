@@ -28,4 +28,8 @@ object Constant {
     const val TYPE_JPEG = "jpg"
     const val SPACE_C = ' '
     const val NO_ID = -1
+
+    object RequestCode {
+        const val WRITE_EXTERNAL = 7257
+    }
 }
