@@ -2,4 +2,6 @@
     <string name="app_name">Photos</string>
     <string name="photos">Photos</string>
     <string name="set_wallpaper">Set as Wallpaper</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
 </resources>

@@ -1,9 +1,9 @@
 package developer.com.photos.util
 
-import kotlin.coroutines.experimental.CoroutineContext
+import kotlinx.coroutines.experimental.CoroutineDispatcher
 
 interface Executor {
-    val io: CoroutineContext
-    val ui: CoroutineContext
-//    val net: CoroutineContext
+    val io: CoroutineDispatcher
+    val ui: CoroutineDispatcher
+    val network: CoroutineDispatcher
 }

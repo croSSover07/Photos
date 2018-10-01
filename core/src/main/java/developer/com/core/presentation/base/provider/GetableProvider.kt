@@ -1,5 +1,5 @@
 package developer.com.core.presentation.base.provider
 
-interface GetableProvider<T> : Provider {
-    operator fun get(at: Int): T?
+interface GetableProvider<out T> {
+    fun get(position: Int): T?
 }

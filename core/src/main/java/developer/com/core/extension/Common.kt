@@ -7,7 +7,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.Toast
-import developer.com.core.presentation.base.provider.GetableProvider
+import developer.com.core.presentation.base.provider.Provider
 import java.lang.ref.WeakReference
 
 fun <T> T.weak() = WeakReference(this)
@@ -20,7 +20,7 @@ fun View.changeVisibility(visible: Boolean, invisibleState: Int = View.GONE) {
     visibility = if (visible) View.VISIBLE else invisibleState
 }
 
-val <T> GetableProvider<T>.lastIndex: Int get() = itemCount - 1
+val <T> Provider<T>.lastIndex: Int get() = itemCount - 1
 
 val Fragment.requiredArguments: Bundle get() = requireNotNull(arguments)
 

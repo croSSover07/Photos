@@ -10,7 +10,7 @@ import developer.com.photos.data.model.Photo
 interface PhotosContract {
     interface View : Updatable, Refreshable
     interface Presenter : Starting, Refreshing {
-        val provider: GetableProvider<Photo>
+        val provider: PhotosDataSource
         fun navigateTo(position: Int)
     }
 }

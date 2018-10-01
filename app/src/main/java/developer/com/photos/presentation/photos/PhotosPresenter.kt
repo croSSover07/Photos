@@ -1,5 +1,6 @@
 package developer.com.photos.presentation.photos
 
+import developer.com.core.data.source.SubscribableDataSource
 import developer.com.core.presentation.base.Presenter
 import developer.com.core.presentation.base.flow.FlowRouter
 import developer.com.core.presentation.base.provider.MutableListProvider
@@ -16,36 +17,25 @@ import javax.inject.Inject
 class PhotosPresenter @Inject constructor(
     v: PhotosContract.View,
     private val router: FlowRouter,
-    private val api: Api,
-    private val job: Job
-) : Presenter<PhotosContract.View>(v), PhotosContract.Presenter {
-    override val provider = MutableListProvider<Photo>()
+    api: Api
+) : Presenter<PhotosContract.View>(v), PhotosContract.Presenter, SubscribableDataSource.Callback {
+    override val provider = PhotosDataSource(api)
 
-    private val executor = AppExecutor()
-
-    override fun start() {
-        request()
+    init {
+        provider.subscribe(this)
     }
 
-    override fun refresh() {
-        request()
-    }
+    override fun start() = Unit
+    override fun refresh() = Unit
 
     override fun navigateTo(position: Int) {
-        router.navigateTo(Screen.Main.Photo(provider[position]?.id ?: return))
+        //TODO: add navigate
+//        router.navigateTo(Screen.Main.Photo(provider. ?: return))
     }
 
-    private fun request() {
-        launch(executor.ui, parent = job) {
-            try {
-                view?.isRefreshing = true
-                provider.addAll(api.photos().await(), true)
-                view?.update()
-            } catch (e: HttpException) {
-                router.showSystemMessage(e.message)
-            } finally {
-                view?.isRefreshing = false
-            }
-        }
+    override fun onDataLoaded() {
+        view?.update()
     }
+
+    override fun onDataNotAvailable(error: String?) = Unit
 }

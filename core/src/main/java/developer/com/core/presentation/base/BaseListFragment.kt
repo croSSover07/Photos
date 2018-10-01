@@ -7,16 +7,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import developer.com.core.R
-import developer.com.core.presentation.base.adapter.RecyclerAdapter
 import developer.com.core.presentation.base.adapter.ViewHolder
 
-abstract class BaseListFragment : BaseFragment(), Updatable, ViewHolder.OnClickListener {
+abstract class BaseListFragment<A> : BaseFragment(), Updatable,
+    ViewHolder.OnClickListener where A : RecyclerView.Adapter<*> {
     override val layoutResId = R.layout.fragment_list
 
     protected lateinit var recyclerView: RecyclerView
-    protected lateinit var adapter: RecyclerAdapter<*>
+    protected lateinit var adapter: A
 
-    protected abstract fun createAdapter(): RecyclerAdapter<*>
+    protected abstract fun createAdapter(): A
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

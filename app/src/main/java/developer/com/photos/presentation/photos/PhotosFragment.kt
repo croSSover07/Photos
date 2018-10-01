@@ -1,18 +1,18 @@
 package developer.com.photos.presentation.photos
 
+import android.arch.paging.PagedList
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import developer.com.core.presentation.base.BaseListFragment
-import developer.com.core.presentation.base.adapter.RecyclerAdapter
+import developer.com.core.presentation.util.Constant
 import developer.com.photos.R
+import developer.com.photos.data.model.Photo
 import developer.com.photos.di.PhotosModule
 import toothpick.Scope
 import javax.inject.Inject
 
-class PhotosFragment : BaseListFragment(), PhotosContract.View,
-    SwipeRefreshLayout.OnRefreshListener {
+class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.View {
 
     override val toolbarTitleRes = R.string.photos
 
@@ -25,13 +25,22 @@ class PhotosFragment : BaseListFragment(), PhotosContract.View,
         presenter.start()
     }
 
-    override fun createAdapter() = RecyclerAdapter(
-        listOf(PhotoAdapterDelegate(presenter.provider, this)),
-        presenter.provider
-    )
+    override fun createAdapter() = PagingAdapter(
+        PhotoAdapterDelegate(this)
+    ).also {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPageSize(Constant.ITEM_PER_PAGE)
+            .build()
 
-    override fun onRefresh() {
-        presenter.refresh()
+        val pagedList = PagedList
+            .Builder(presenter.provider, config)
+            .setNotifyExecutor(UiThreadExecutor())
+            .setFetchExecutor(BackgroundThreadExecutor())
+            .build()
+
+        it.submitList(pagedList)
+        it.notifyDataSetChanged()
     }
 
     override fun onViewHolderClick(viewHolder: RecyclerView.ViewHolder, position: Int, id: Int) {

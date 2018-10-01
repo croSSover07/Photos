@@ -6,6 +6,8 @@ object Constant {
         const val SKIP_SCREEN = 5257
     }
 
+    const val ITEM_PER_PAGE = 10
+
     const val SEMICOLON = ";"
     const val COLON = ":"
     const val SPACE = " "
