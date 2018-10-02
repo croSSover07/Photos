@@ -1,4 +1,4 @@
-package developer.com.photos.presentation.photos
+package developer.com.photos.presentation.base
 
 import android.arch.paging.PagedListAdapter
 import android.os.Handler

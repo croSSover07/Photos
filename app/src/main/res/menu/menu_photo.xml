@@ -5,4 +5,9 @@
         android:id="@+id/itemWallpaper"
         android:title="@string/set_wallpaper"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/itemDownloader"
+        android:title="@string/download"
+        app:showAsAction="never"/>
 </menu>

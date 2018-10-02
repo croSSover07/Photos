@@ -11,5 +11,6 @@ interface PhotoContract {
 
     interface Presenter : Starting {
         fun setWallpaper()
+        fun download()
     }
 }

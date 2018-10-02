@@ -4,7 +4,9 @@ import developer.com.core.presentation.base.Presenter
 import developer.com.photos.data.model.Photo
 import developer.com.photos.data.net.Api
 import developer.com.photos.di.qualifier.PhotoId
+import developer.com.photos.util.AndroidDownloader
 import developer.com.photos.util.AppExecutor
+import developer.com.photos.util.Downloader
 import developer.com.photos.util.WallPaperManager
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
@@ -19,7 +21,8 @@ class PhotoPresenter @Inject constructor(
     private val api: Api,
     private val router: Router,
     private val job: Job,
-    private val wallpaperManager: WallPaperManager
+    private val wallpaperManager: WallPaperManager,
+    private val downloader: Downloader
 ) : Presenter<PhotoContract.View>(v), PhotoContract.Presenter {
 
     private val executor = AppExecutor()
@@ -37,6 +40,12 @@ class PhotoPresenter @Inject constructor(
 
     override fun setWallpaper() {
         wallpaperManager.setWallpaper(photo?.urls?.full ?: return)
+    }
+
+    override fun download() {
+        photo?.let {
+            downloader.downloadImage(it.links.download, it.id)
+        }
     }
 
     private fun request() {

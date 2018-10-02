@@ -47,12 +47,17 @@ class PhotoFragment : BaseFragment(), PhotoContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.itemDownloader -> {
+            presenter.download()
+            true
+        }
         R.id.itemWallpaper -> {
             if (!isPermissionGranted) {
                 requestPermissions(arrayOf(PERMISSION), Constant.RequestCode.WRITE_EXTERNAL)
             } else presenter.setWallpaper()
             true
         }
+
         else -> super.onOptionsItemSelected(item)
     }
 

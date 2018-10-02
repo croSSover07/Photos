@@ -10,6 +10,9 @@ import developer.com.core.presentation.util.Constant
 import developer.com.photos.R
 import developer.com.photos.data.model.Photo
 import developer.com.photos.di.PhotosModule
+import developer.com.photos.presentation.base.BackgroundThreadExecutor
+import developer.com.photos.presentation.base.PagingAdapter
+import developer.com.photos.presentation.base.UiThreadExecutor
 import toothpick.Scope
 import javax.inject.Inject
 
