@@ -1,6 +1,7 @@
 package developer.com.photos.presentation.photos
 
 import android.arch.paging.PagedList
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -41,6 +42,11 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
 
         it.submitList(pagedList)
         it.notifyDataSetChanged()
+    }
+
+    override fun configure(context: Context, recyclerView: RecyclerView) {
+        super.configure(context, recyclerView)
+        recyclerView.setHasFixedSize(false)
     }
 
     override fun onViewHolderClick(viewHolder: RecyclerView.ViewHolder, position: Int, id: Int) {

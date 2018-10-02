@@ -6,9 +6,8 @@ import developer.com.photos.presentation.photo.PhotoFragment
 import developer.com.photos.presentation.photo.PhotoPresenter
 import developer.com.photos.util.AndroidWallpaperManager
 import developer.com.photos.util.WallPaperManager
-import toothpick.config.Module
 
-class PhotoModule(fragment: PhotoFragment) : Module() {
+class PhotoModule(fragment: PhotoFragment) : AndroidModule(fragment) {
     init {
         bind(PhotoContract.View::class.java).toInstance(fragment)
 

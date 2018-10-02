@@ -3,15 +3,8 @@ package developer.com.photos.presentation.photos
 import developer.com.core.data.source.SubscribableDataSource
 import developer.com.core.presentation.base.Presenter
 import developer.com.core.presentation.base.flow.FlowRouter
-import developer.com.core.presentation.base.provider.MutableListProvider
 import developer.com.photos.Screen
-import developer.com.photos.data.model.Photo
 import developer.com.photos.data.net.Api
-import developer.com.photos.util.AppExecutor
-import kotlinx.coroutines.experimental.Job
-import kotlinx.coroutines.experimental.launch
-import retrofit2.HttpException
-import ru.gildor.coroutines.retrofit.await
 import javax.inject.Inject
 
 class PhotosPresenter @Inject constructor(
@@ -29,8 +22,7 @@ class PhotosPresenter @Inject constructor(
     override fun refresh() = Unit
 
     override fun navigateTo(position: Int) {
-        //TODO: add navigate
-//        router.navigateTo(Screen.Main.Photo(provider. ?: return))
+        router.navigateTo(Screen.Main.Photo(provider.get(position)?.id ?: return))
     }
 
     override fun onDataLoaded() {

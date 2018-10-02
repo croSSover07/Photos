@@ -1,8 +1,6 @@
 package developer.com.photos.presentation.photos
 
-import android.arch.paging.PagedList
 import android.arch.paging.PagedListAdapter
-import android.arch.paging.PositionalDataSource
 import android.os.Handler
 import android.os.Looper
 import android.support.v7.util.DiffUtil
