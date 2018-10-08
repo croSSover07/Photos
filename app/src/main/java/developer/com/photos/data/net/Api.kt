@@ -14,7 +14,7 @@ interface Api {
         @Query(Key.PAGE) page: Int = 1,
         @Query(Key.PER_PAGE) perPage: Int = 10,
         @[Order Query(Key.ORDER_BY)] orderBy: String = Order.LATEST
-    ): Call<Array<Photo>>
+    ): Call<List<Photo>>
 
     @GET("search/photos")
     fun search(

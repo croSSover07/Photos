@@ -5,4 +5,7 @@
     <string name="city">City</string>
     <string name="country">Country</string>
     <string name="download">Download</string>
+    <string name="location">Location</string>
+    <string name="width">Width</string>
+    <string name="height">Height</string>
 </resources>

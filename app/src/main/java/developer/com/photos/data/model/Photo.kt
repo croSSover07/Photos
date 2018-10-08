@@ -11,5 +11,6 @@ class Photo(
     val likes: Int,
     val description: String,
     val urls: Urls,
-    val links: Links
+    val links: Links,
+    val location: Location
 ) : WithIdentifier

@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/imageView"
-        android:scaleType="fitCenter"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/widthTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/width"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView"/>
+
+        <TextView
+            android:id="@+id/widthText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            tools:text="1234"
+            app:layout_constraintBottom_toBottomOf="@+id/widthTitle"
+            app:layout_constraintStart_toEndOf="@+id/widthTitle"
+            app:layout_constraintTop_toTopOf="@+id/widthTitle"/>
+
+        <TextView
+            android:id="@+id/heightTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/widthTitle"/>
+
+        <TextView
+            android:id="@+id/heightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            tools:text="5678"
+            app:layout_constraintBottom_toBottomOf="@+id/heightTitle"
+            app:layout_constraintStart_toEndOf="@+id/heightTitle"
+            app:layout_constraintTop_toTopOf="@+id/heightTitle"/>
+
+        <TextView
+            android:id="@+id/locationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heightTitle"/>
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            tools:text="USA"
+            app:layout_constraintBottom_toBottomOf="@+id/locationTitle"
+            app:layout_constraintStart_toEndOf="@+id/locationTitle"
+            app:layout_constraintTop_toTopOf="@+id/locationTitle"/>
+    </android.support.constraint.ConstraintLayout>
 </LinearLayout>
