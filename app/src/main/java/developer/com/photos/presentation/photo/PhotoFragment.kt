@@ -2,13 +2,14 @@ package developer.com.photos.presentation.photo
 
 import android.Manifest
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import developer.com.core.extension.isPermissionGranted
+import developer.com.core.extension.isVisible
 import developer.com.core.extension.requiredArguments
 import developer.com.core.presentation.base.BaseFragment
 import developer.com.core.presentation.util.Constant
 import developer.com.photos.R
+import developer.com.photos.data.model.Photo
 import developer.com.photos.di.PhotoModule
 import developer.com.photos.extension.load
 import developer.com.photos.extension.mainActivity
@@ -16,11 +17,12 @@ import kotlinx.android.synthetic.main.fragment_photo.*
 import toothpick.Scope
 import javax.inject.Inject
 
-class PhotoFragment : BaseFragment(), PhotoContract.View {
+class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener {
     companion object {
         private const val EXTRA = "EXTRA"
 
         private const val PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE
+
         fun newInstance(id: String) = PhotoFragment().apply {
             arguments = Bundle(1).also {
                 it.putString(EXTRA, id)
@@ -29,7 +31,6 @@ class PhotoFragment : BaseFragment(), PhotoContract.View {
     }
 
     override val layoutResId = R.layout.fragment_photo
-    override val optionsMenuRes: Int = R.menu.menu_photo
 
     val photoId: String get() = requiredArguments.getString(EXTRA) ?: Constant.EMPTY
 
@@ -44,21 +45,9 @@ class PhotoFragment : BaseFragment(), PhotoContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.start()
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
-        R.id.itemDownloader -> {
-            presenter.download()
-            true
-        }
-        R.id.itemWallpaper -> {
-            if (!isPermissionGranted) {
-                requestPermissions(arrayOf(PERMISSION), Constant.RequestCode.WRITE_EXTERNAL)
-            } else presenter.setWallpaper()
-            true
-        }
-
-        else -> super.onOptionsItemSelected(item)
+        setWallView.setOnClickListener(this)
+        downloadsView.setOnClickListener(this)
     }
 
     override fun onRequestPermissionsResult(
@@ -76,12 +65,56 @@ class PhotoFragment : BaseFragment(), PhotoContract.View {
         }
     }
 
-    override fun showPhoto(url: String) {
-        imageView.load(url)
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.setWallView -> {
+                if (!isPermissionGranted) {
+                    requestPermissions(arrayOf(PERMISSION), Constant.RequestCode.WRITE_EXTERNAL)
+                } else presenter.setWallpaper()
+            }
+            R.id.downloadsView -> presenter.download()
+        }
     }
 
-    override fun updateTitle(title: String) {
-        mainActivity?.supportActionBar?.title = title
-        toolbarTitle = title
+    override fun showPhoto(photo: Photo) {
+        imageView.load(photo.urls?.full)
+
+        photo.description.let {
+            mainActivity?.supportActionBar?.title = it
+            toolbarTitle = it
+        }
+
+        photo.instagramName?.let {
+            userText.text = it
+        } ?: apply {
+            userText.isVisible = false
+            userTitle.isVisible = false
+        }
+
+        widthText.text = "${photo.width}"
+        heightText.text = "${photo.height}"
+
+        photo.locationTitle?.let {
+            locationText.text = it
+        } ?: apply {
+            locationText.isVisible = false
+            locationTitle.isVisible = false
+        }
+
+        photo.views?.let {
+            viewsText.text = it.toString()
+        } ?: apply {
+            viewsText.isVisible = false
+            viewsTitle.isVisible = false
+        }
+
+        photo.downloads?.let {
+            downloadsText.text = it.toString()
+        } ?: apply {
+            downloadsText.isVisible = false
+            downloadsView.isVisible = false
+        }
+
+        likesText.text = "${photo.likes}"
     }
 }

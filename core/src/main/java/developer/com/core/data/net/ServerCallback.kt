@@ -1,5 +1,6 @@
 package developer.com.core.data.net
 
+import com.google.gson.Gson
 import com.google.gson.JsonParseException
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,7 +10,7 @@ abstract class ServerCallback<T> : Callback<T> {
     final override fun onResponse(call: Call<T>, response: Response<T>) {
         if (!response.isSuccessful) {
             val error = try {
-                gson.fromJson<ServerError>(response.errorBody()?.string(), ServerError::class.java)
+                Gson().fromJson<ServerError>(response.errorBody()?.string(), ServerError::class.java)
 
             } catch (e: JsonParseException) {
                 e.printStackTrace()

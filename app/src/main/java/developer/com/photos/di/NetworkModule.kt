@@ -1,7 +1,7 @@
 package developer.com.photos.di
 
 import com.google.gson.Gson
-import developer.com.core.data.net.gson
+import developer.com.photos.data.net.gson
 import developer.com.photos.BuildConfig
 import developer.com.photos.data.net.Api
 import okhttp3.OkHttpClient

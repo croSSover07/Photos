@@ -1,16 +1,16 @@
 package developer.com.photos.data.model
 
-import com.google.gson.annotations.SerializedName
-
 class Photo(
     override val id: String,
-    @SerializedName("created_at")
-    val createAt: String,
+    val createAt: String?,
     val width: Int,
     val height: Int,
     val likes: Int,
-    val description: String,
-    val urls: Urls,
-    val links: Links,
-    val location: Location
+    val description: String?,
+    val urls: Urls?,
+    val downloadLink: String,
+    val locationTitle: String?,
+    val instagramName: String?,
+    val views: Int?,
+    val downloads: Int?
 ) : WithIdentifier

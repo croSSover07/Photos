@@ -32,8 +32,7 @@ class PhotoPresenter @Inject constructor(
     override fun start() {
         photo?.let {
             view?.let { v ->
-                v.showPhoto(it.urls.full)
-                v.updateTitle(it.description)
+                v.showPhoto(it)
             }
         } ?: request()
     }
@@ -44,7 +43,7 @@ class PhotoPresenter @Inject constructor(
 
     override fun download() {
         photo?.let {
-            downloader.downloadImage(it.links.download, it.id)
+            downloader.downloadImage(it.downloadLink, it.id)
         }
     }
 
@@ -53,7 +52,7 @@ class PhotoPresenter @Inject constructor(
             try {
                 photo = api.photo(photoId).await()
                 photo?.let {
-                    view?.showPhoto(it.urls.full)
+                    view?.showPhoto(it)
                 }
             } catch (e: HttpException) {
                 router.showSystemMessage(e.message)

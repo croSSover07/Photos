@@ -6,6 +6,7 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
 import java.net.URL
@@ -31,7 +32,7 @@ class AndroidWallpaperManager @Inject constructor(
         val uriImage = MediaStore.Images.Media.insertImage(
             context.contentResolver, bitmap, Uri.parse(url).lastPathSegment, null
         ).let { Uri.parse(it) }
-
+        Log.i("Tag ", uriImage.toString())
         val intent = manager.getCropAndSetWallpaperIntent(uriImage).setFlags(FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }

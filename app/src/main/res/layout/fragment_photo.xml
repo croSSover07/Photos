@@ -1,82 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/spacing_x2"
             android:scaleType="fitCenter"/>
 
         <TextView
-            android:id="@+id/widthTitle"
+            android:id="@+id/userTitle"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/width"
+            android:text="@string/instagram"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageView"/>
 
         <TextView
-            android:id="@+id/widthText"
+            android:id="@+id/userText"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            tools:text="1234"
+            app:layout_constraintBottom_toBottomOf="@+id/userTitle"
+            app:layout_constraintStart_toEndOf="@+id/userTitle"
+            app:layout_constraintTop_toTopOf="@+id/userTitle"
+            tools:text="/@USA"/>
+
+        <TextView
+            android:id="@+id/widthTitle"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/width"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userText"/>
+
+        <TextView
+            android:id="@+id/widthText"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/widthTitle"
             app:layout_constraintStart_toEndOf="@+id/widthTitle"
-            app:layout_constraintTop_toTopOf="@+id/widthTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/widthTitle"
+            tools:text="1234"/>
 
         <TextView
             android:id="@+id/heightTitle"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="@string/height"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/widthTitle"/>
 
         <TextView
             android:id="@+id/heightText"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            tools:text="5678"
             app:layout_constraintBottom_toBottomOf="@+id/heightTitle"
             app:layout_constraintStart_toEndOf="@+id/heightTitle"
-            app:layout_constraintTop_toTopOf="@+id/heightTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/heightTitle"
+            tools:text="5678"/>
 
         <TextView
             android:id="@+id/locationTitle"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:text="@string/location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/heightTitle"/>
 
         <TextView
             android:id="@+id/locationText"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            tools:text="USA"
             app:layout_constraintBottom_toBottomOf="@+id/locationTitle"
             app:layout_constraintStart_toEndOf="@+id/locationTitle"
-            app:layout_constraintTop_toTopOf="@+id/locationTitle"/>
+            app:layout_constraintTop_toTopOf="@+id/locationTitle"
+            tools:text="USA"/>
+
+        <TextView
+            android:id="@+id/viewsTitle"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/views"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationTitle"/>
+
+        <TextView
+            android:id="@+id/viewsText"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/viewsTitle"
+            app:layout_constraintStart_toEndOf="@+id/viewsTitle"
+            app:layout_constraintTop_toTopOf="@+id/viewsTitle"
+            tools:text="1233"/>
+
+        <ImageView
+            android:id="@+id/likesView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing"
+            android:src="@drawable/svg_like"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewsTitle"/>
+
+        <TextView
+            android:id="@+id/likesText"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/likesView"
+            app:layout_constraintStart_toEndOf="@+id/likesView"
+            app:layout_constraintTop_toTopOf="@+id/likesView"
+            tools:text="1233"/>
+
+        <ImageView
+            android:id="@+id/downloadsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing"
+            android:src="@drawable/svg_download"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/likesView"/>
+
+        <TextView
+            android:id="@+id/downloadsText"
+            style="@style/Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/downloadsView"
+            app:layout_constraintStart_toEndOf="@+id/downloadsView"
+            app:layout_constraintTop_toTopOf="@+id/downloadsView"
+            tools:text="1233"/>
+
+        <Button
+            android:id="@+id/setWallView"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:padding="@dimen/spacing"
+            android:text="@string/set_as_wallpaper"
+            android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/downloadsView"/>
     </android.support.constraint.ConstraintLayout>
-</LinearLayout>
+</ScrollView>

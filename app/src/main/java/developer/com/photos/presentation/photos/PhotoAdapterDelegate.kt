@@ -15,7 +15,7 @@ class PhotoAdapterDelegate(
     override fun onCreateViewHolder(parent: ViewGroup) = PhotoViewHolder(parent, listener)
 
     override fun onBindViewHolder(position: Int, holder: PhotoViewHolder, item: Photo) {
-        holder.image.load(item.urls.small)
+        holder.image.load(item.urls?.small)
         if (item.description.isNullOrEmpty()) {
             holder.title.visibility = View.GONE
         } else {
