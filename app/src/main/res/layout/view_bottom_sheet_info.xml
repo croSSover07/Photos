@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutBottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    app:behavior_peekHeight="@dimen/spacing_x7"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/userTitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/instagram"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+
+    <TextView
+        android:id="@+id/userText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/userTitle"
+        app:layout_constraintStart_toEndOf="@+id/userTitle"
+        app:layout_constraintTop_toTopOf="@+id/userTitle"
+        tools:text="/@USA"/>
+
+    <TextView
+        android:id="@+id/widthTitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/width"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userText"/>
+
+    <TextView
+        android:id="@+id/widthText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/widthTitle"
+        app:layout_constraintStart_toEndOf="@+id/widthTitle"
+        app:layout_constraintTop_toTopOf="@+id/widthTitle"
+        tools:text="1234"/>
+
+    <TextView
+        android:id="@+id/heightTitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/widthTitle"/>
+
+    <TextView
+        android:id="@+id/heightText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/heightTitle"
+        app:layout_constraintStart_toEndOf="@+id/heightTitle"
+        app:layout_constraintTop_toTopOf="@+id/heightTitle"
+        tools:text="5678"/>
+
+    <TextView
+        android:id="@+id/locationTitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heightTitle"/>
+
+    <TextView
+        android:id="@+id/locationText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/locationTitle"
+        app:layout_constraintStart_toEndOf="@+id/locationTitle"
+        app:layout_constraintTop_toTopOf="@+id/locationTitle"
+        tools:text="USA"/>
+
+    <TextView
+        android:id="@+id/viewsTitle"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/views"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationTitle"/>
+
+    <TextView
+        android:id="@+id/viewsText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/viewsTitle"
+        app:layout_constraintStart_toEndOf="@+id/viewsTitle"
+        app:layout_constraintTop_toTopOf="@+id/viewsTitle"
+        tools:text="1233"/>
+
+    <ImageView
+        android:id="@+id/likesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing"
+        android:src="@drawable/svg_like"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewsTitle"/>
+
+    <TextView
+        android:id="@+id/likesText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/likesView"
+        app:layout_constraintStart_toEndOf="@+id/likesView"
+        app:layout_constraintTop_toTopOf="@+id/likesView"
+        tools:text="1233"/>
+
+    <ImageView
+        android:id="@+id/downloadsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing"
+        android:src="@drawable/svg_download"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/likesView"/>
+
+    <TextView
+        android:id="@+id/downloadsText"
+        style="@style/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/downloadsView"
+        app:layout_constraintStart_toEndOf="@+id/downloadsView"
+        app:layout_constraintTop_toTopOf="@+id/downloadsView"
+        tools:text="1233"/>
+
+    <Button
+        android:id="@+id/setWallView"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/set_as_wallpaper"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/downloadsView"/>
+</android.support.constraint.ConstraintLayout>

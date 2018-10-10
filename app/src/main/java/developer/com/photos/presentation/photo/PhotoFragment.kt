@@ -1,8 +1,13 @@
 package developer.com.photos.presentation.photo
 
 import android.Manifest
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import developer.com.core.extension.isPermissionGranted
 import developer.com.core.extension.isVisible
 import developer.com.core.extension.requiredArguments
@@ -14,10 +19,12 @@ import developer.com.photos.di.PhotoModule
 import developer.com.photos.extension.load
 import developer.com.photos.extension.mainActivity
 import kotlinx.android.synthetic.main.fragment_photo.*
+import kotlinx.android.synthetic.main.view_bottom_sheet_info.*
 import toothpick.Scope
 import javax.inject.Inject
 
-class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener {
+class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
+    RequestListener<Drawable?> {
     companion object {
         private const val EXTRA = "EXTRA"
 
@@ -44,10 +51,11 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.start()
 
         setWallView.setOnClickListener(this)
         downloadsView.setOnClickListener(this)
+
+        presenter.start()
     }
 
     override fun onRequestPermissionsResult(
@@ -77,7 +85,8 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener {
     }
 
     override fun showPhoto(photo: Photo) {
-        imageView.load(photo.urls?.full)
+        isRefreshing = true
+        imageView.load(photo.urls?.full, requestListener = this@PhotoFragment)
 
         photo.description.let {
             mainActivity?.supportActionBar?.title = it
@@ -116,5 +125,26 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener {
         }
 
         likesText.text = "${photo.likes}"
+    }
+
+    override fun onLoadFailed(
+        e: GlideException?,
+        model: Any?,
+        target: Target<Drawable?>?,
+        isFirstResource: Boolean
+    ): Boolean {
+        isRefreshing = false
+        return false
+    }
+
+    override fun onResourceReady(
+        resource: Drawable?,
+        model: Any?,
+        target: Target<Drawable?>?,
+        dataSource: DataSource?,
+        isFirstResource: Boolean
+    ): Boolean {
+        isRefreshing = false
+        return false
     }
 }

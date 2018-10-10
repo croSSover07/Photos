@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import developer.com.photos.App
@@ -16,5 +17,6 @@ fun <T> ImageView.load(
     requestListener: RequestListener<Drawable?>? = null
 ) = glide.load(model)
     .apply(RequestOptions.diskCacheStrategyOf(strategy))
+    .transition(DrawableTransitionOptions.withCrossFade())
     .listener(requestListener)
     .into(this)
