@@ -8,6 +8,7 @@ import developer.com.photos.data.model.Photo
 interface PhotoContract {
     interface View : Attachable, Refreshable {
         fun showPhoto(photo: Photo)
+        fun showInstaProfile(name: String)
     }
 
     interface Presenter : Starting {

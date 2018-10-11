@@ -1,7 +1,11 @@
 package developer.com.photos.presentation.photo
 
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.load.DataSource
@@ -55,6 +59,11 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
         setWallButton.setOnClickListener(this)
         downloadButton.setOnClickListener(this)
 
+        userText.apply {
+            paintFlags = Paint.UNDERLINE_TEXT_FLAG
+            setOnClickListener(this@PhotoFragment)
+        }
+
         presenter.start()
     }
 
@@ -81,6 +90,17 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
                 } else presenter.setWallpaper()
             }
             R.id.downloadButton -> presenter.download()
+            R.id.userText -> showInstaProfile(userText.text.toString())
+        }
+    }
+
+    override fun showInstaProfile(name: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/$name"))
+            intent.setPackage("com.instagram.android")
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/$name")))
         }
     }
 
@@ -128,10 +148,7 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
     }
 
     override fun onLoadFailed(
-        e: GlideException?,
-        model: Any?,
-        target: Target<Drawable?>?,
-        isFirstResource: Boolean
+        e: GlideException?, model: Any?, target: Target<Drawable?>?, isFirstResource: Boolean
     ): Boolean {
         isRefreshing = false
         return false
