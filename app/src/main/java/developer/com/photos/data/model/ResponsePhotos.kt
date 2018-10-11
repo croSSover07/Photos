@@ -6,5 +6,5 @@ class ResponsePhotos(
     val total: Int,
     @SerializedName("total_pages")
     val totalPages: Int,
-    val results: Array<Photo>
+    val results: List<Photo>
 )

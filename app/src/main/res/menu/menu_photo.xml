@@ -2,12 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/itemWallpaper"
-        android:title="@string/set_wallpaper"
-        app:showAsAction=""/>
-
-    <item
-        android:id="@+id/itemDownloader"
-        android:title="@string/download"
-        app:showAsAction="never"/>
+        android:id="@+id/itemSearch"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView"/>
 </menu>
