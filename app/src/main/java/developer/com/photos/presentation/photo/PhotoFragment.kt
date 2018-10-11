@@ -52,8 +52,8 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setWallView.setOnClickListener(this)
-        downloadsView.setOnClickListener(this)
+        setWallButton.setOnClickListener(this)
+        downloadButton.setOnClickListener(this)
 
         presenter.start()
     }
@@ -75,12 +75,12 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.setWallView -> {
+            R.id.setWallButton -> {
                 if (!isPermissionGranted) {
                     requestPermissions(arrayOf(PERMISSION), Constant.RequestCode.WRITE_EXTERNAL)
                 } else presenter.setWallpaper()
             }
-            R.id.downloadsView -> presenter.download()
+            R.id.downloadButton -> presenter.download()
         }
     }
 

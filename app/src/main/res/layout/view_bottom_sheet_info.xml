@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/instagram"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/userText"
@@ -146,13 +146,30 @@
         tools:text="1233"/>
 
     <Button
-        android:id="@+id/setWallView"
+        android:id="@+id/setWallButton"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/set_as_wallpaper"
+        android:drawableTop="@drawable/svg_wallpaper"
+        android:foreground="?selectableItemBackground"
+        android:text="@string/set_as"
         android:textColor="@android:color/white"
+        app:layout_constraintEnd_toStartOf="@+id/downloadButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/downloadsView"/>
+
+    <Button
+        android:id="@+id/downloadButton"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/svg_download"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:text="@string/download"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/setWallButton"
         app:layout_constraintTop_toBottomOf="@id/downloadsView"/>
 </android.support.constraint.ConstraintLayout>
