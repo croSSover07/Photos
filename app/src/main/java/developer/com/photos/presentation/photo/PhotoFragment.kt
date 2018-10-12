@@ -108,10 +108,11 @@ class PhotoFragment : BaseFragment(), PhotoContract.View, View.OnClickListener,
         isRefreshing = true
         imageView.load(photo.urls?.full, requestListener = this@PhotoFragment)
 
-        photo.description.let {
-            mainActivity?.supportActionBar?.title = it
-            toolbarTitle = it
-        }
+        photo.let { it.description ?: it.instagramName ?: it.createAt ?: Constant.EMPTY }
+            .apply {
+                mainActivity?.supportActionBar?.title = this
+                toolbarTitle = this
+            }
 
         photo.instagramName?.let {
             userText.text = it
