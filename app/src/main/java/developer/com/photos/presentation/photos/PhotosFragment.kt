@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import developer.com.core.presentation.base.BaseListFragment
-import developer.com.core.presentation.util.Constant
+import developer.com.core.util.Constant
 import developer.com.photos.R
 import developer.com.photos.data.model.Photo
 import developer.com.photos.di.PhotosModule

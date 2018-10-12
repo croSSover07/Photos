@@ -1,12 +1,13 @@
 package developer.com.photos.presentation.photo
 
-import developer.com.core.presentation.base.Attachable
-import developer.com.core.presentation.base.Refreshable
-import developer.com.core.presentation.base.Starting
+import developer.com.core.presentation.presenter.Starting
+import developer.com.core.presentation.view.Attachable
+import developer.com.core.presentation.view.Messageable
+import developer.com.core.presentation.view.Refreshable
 import developer.com.photos.data.model.Photo
 
 interface PhotoContract {
-    interface View : Attachable, Refreshable {
+    interface View : Attachable, Refreshable, Messageable {
         fun showPhoto(photo: Photo)
         fun showInstaProfile(name: String)
     }

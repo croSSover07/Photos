@@ -1,30 +1,29 @@
 package developer.com.photos.presentation.photo
 
-import developer.com.core.presentation.base.Presenter
+import developer.com.core.common.ExceptionHandler
+import developer.com.core.presentation.presenter.ExceptionHandlingPresenter
+import developer.com.core.util.Executor
 import developer.com.photos.data.model.Photo
 import developer.com.photos.data.net.Api
 import developer.com.photos.di.qualifier.PhotoId
-import developer.com.photos.util.AppExecutor
 import developer.com.photos.util.Downloader
 import developer.com.photos.util.WallPaperManager
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
-import retrofit2.HttpException
 import ru.gildor.coroutines.retrofit.await
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class PhotoPresenter @Inject constructor(
     v: PhotoContract.View,
     @PhotoId val photoId: String,
     private val api: Api,
-    private val router: Router,
-    private val job: Job,
+    job: Job,
+    executor: Executor,
+    handler: ExceptionHandler,
     private val wallpaperManager: WallPaperManager,
     private val downloader: Downloader
-) : Presenter<PhotoContract.View>(v), PhotoContract.Presenter {
-
-    private val executor = AppExecutor()
+) : ExceptionHandlingPresenter<PhotoContract.View>(v, job, executor, handler),
+    PhotoContract.Presenter {
 
     private var photo: Photo? = null
 
@@ -47,16 +46,10 @@ class PhotoPresenter @Inject constructor(
     }
 
     private fun request() {
-        launch(executor.ui, parent = job) {
-            try {
-                photo = api.photo(photoId).await()
-                photo?.let {
-                    view?.showPhoto(it)
-                }
-            } catch (e: HttpException) {
-//                router.showSystemMessage(e.message)
-            } finally {
-
+        launch {
+            photo = api.photo(photoId).await()
+            photo?.let {
+                view?.showPhoto(it)
             }
         }
     }

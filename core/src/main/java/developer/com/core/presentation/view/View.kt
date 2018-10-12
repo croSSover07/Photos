@@ -1,6 +1,4 @@
-package developer.com.core.presentation.base
-
-import developer.com.core.data.source.Repository
+package developer.com.core.presentation.view
 
 // region View
 interface Attachable {
@@ -26,22 +24,9 @@ interface Refreshable : Attachable {
 interface Titleable {
     fun updateTitle(title: String)
 }
-// endregion
 
-// region Presenter
-interface Refreshing {
-    fun refresh()
-}
-
-interface Starting {
-    fun start()
-}
-
-interface Detaching {
-    fun detach()
-}
-
-interface HasOptionalRepository {
-    val repository: Repository<*, *>?
+interface Messageable {
+    /** @param withDuration default value is 0 (Toast.LENGTH_SHORT / Snackbar.LENGTH_LONG) */
+    fun show(message: String, withDuration: Int = 0, param: Int = 0)
 }
 // endregion

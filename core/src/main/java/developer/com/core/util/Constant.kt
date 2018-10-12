@@ -1,4 +1,4 @@
-package developer.com.core.presentation.util
+package developer.com.core.util
 
 object Constant {
 

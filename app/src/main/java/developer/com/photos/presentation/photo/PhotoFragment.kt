@@ -16,7 +16,7 @@ import developer.com.core.extension.isPermissionGranted
 import developer.com.core.extension.isVisible
 import developer.com.core.extension.requiredArguments
 import developer.com.core.presentation.base.BaseFragment
-import developer.com.core.presentation.util.Constant
+import developer.com.core.util.Constant
 import developer.com.photos.R
 import developer.com.photos.data.model.Photo
 import developer.com.photos.di.PhotoModule

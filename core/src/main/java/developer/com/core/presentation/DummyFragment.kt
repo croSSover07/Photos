@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import developer.com.core.R
 import developer.com.core.presentation.base.BaseFragment
-import developer.com.core.presentation.util.Constant
+import developer.com.core.util.Constant
 
 class DummyFragment : BaseFragment() {
     companion object {

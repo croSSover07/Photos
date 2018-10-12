@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.support.annotation.CallSuper
 
 import android.support.v7.app.AppCompatActivity
+import developer.com.core.presentation.view.Attachable
 import toothpick.Scope
 import toothpick.Toothpick
 import toothpick.smoothie.module.SmoothieSupportActivityModule
 
-abstract class BaseActivity : AppCompatActivity(), Attachable {
+abstract class BaseActivity : AppCompatActivity(),
+    Attachable {
 
     protected var scope: Scope? = null
 

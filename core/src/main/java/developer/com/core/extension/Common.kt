@@ -11,6 +11,7 @@ import developer.com.core.presentation.base.provider.Provider
 import java.lang.ref.WeakReference
 
 fun <T> T.weak() = WeakReference(this)
+fun <T> T.unit() = Unit
 val Any.className: String get() = this.javaClass.simpleName
 var View.isVisible: Boolean
     get() = visibility == View.VISIBLE

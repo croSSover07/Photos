@@ -7,10 +7,15 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.*
+import android.widget.Toast
+import developer.com.core.presentation.view.Messageable
+import developer.com.core.presentation.view.OnBackPressedListener
+import developer.com.core.presentation.view.Refreshable
 import toothpick.Scope
 import toothpick.Toothpick
 
-abstract class BaseFragment : Fragment(), Refreshable, OnBackPressedListener {
+abstract class BaseFragment : Fragment(), Refreshable, Messageable,
+    OnBackPressedListener {
 
     abstract val layoutResId: Int
 
@@ -104,4 +109,8 @@ abstract class BaseFragment : Fragment(), Refreshable, OnBackPressedListener {
     }
 
     override fun onBackPressed() = false
+
+    override fun show(message: String, withDuration: Int, param: Int) {
+        Toast.makeText(context ?: return, message, withDuration).show()
+    }
 }
