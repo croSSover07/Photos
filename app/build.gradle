@@ -58,7 +58,7 @@ dependencies {
     implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpick_version"
     kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpick_version"
 
-    implementation "ru.terrakok.cicerone:cicerone:3.0.0"
+    implementation "ru.terrakok.cicerone:cicerone:4.0.2"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
