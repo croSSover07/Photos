@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
-import android.view.View
 import android.widget.Toast
 import developer.com.core.presentation.base.provider.Provider
 import java.lang.ref.WeakReference
@@ -13,13 +12,6 @@ import java.lang.ref.WeakReference
 fun <T> T.weak() = WeakReference(this)
 fun <T> T.unit() = Unit
 val Any.className: String get() = this.javaClass.simpleName
-var View.isVisible: Boolean
-    get() = visibility == View.VISIBLE
-    set(value) = changeVisibility(value)
-
-fun View.changeVisibility(visible: Boolean, invisibleState: Int = View.GONE) {
-    visibility = if (visible) View.VISIBLE else invisibleState
-}
 
 val <T> Provider<T>.lastIndex: Int get() = itemCount - 1
 

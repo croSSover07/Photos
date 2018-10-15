@@ -12,18 +12,17 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
         android:layout_height="match_parent"
-        android:layout_above="@id/titleText"
+        android:scaleType="centerCrop"
         tools:background="@android:color/holo_orange_light"/>
 
     <TextView
         android:id="@+id/titleText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="@dimen/spacing"
-        android:visibility="gone"
-        android:textColor="@android:color/black"
+        android:background="@drawable/drawable_transparent_black"
+        android:textColor="@android:color/white"
         tools:text="A man drinking a coffee."/>
 </RelativeLayout>
