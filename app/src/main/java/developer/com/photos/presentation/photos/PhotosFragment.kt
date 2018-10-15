@@ -60,6 +60,7 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         val searchView: SearchView = menu.findItem(R.id.itemSearch).actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
         searchView.setOnQueryTextListener(this)
     }
 
