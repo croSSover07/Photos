@@ -10,8 +10,7 @@ import developer.com.photos.data.model.Photo
 
 interface PhotosContract {
     interface View : Updatable, Refreshable, Messageable
-    interface Presenter : Starting,
-        Refreshing {
+    interface Presenter : Starting, Refreshing {
         var provider: GetableProvider<Photo>?
         fun navigateTo(position: Int)
         fun attach(p: GetableProvider<Photo>)

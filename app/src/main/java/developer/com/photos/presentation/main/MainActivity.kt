@@ -35,7 +35,7 @@ class MainActivity : BaseNavigatorActivity(), MainContract.View, HasToolbarLayou
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(toolbar)
-        presenter.start()
+        savedInstanceState ?: presenter.start()
     }
 
     override fun installModules(scope: Scope) {
