@@ -10,7 +10,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import developer.com.core.presentation.base.BaseListFragment
 import developer.com.core.util.Constant
@@ -25,7 +24,7 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
     SearchView.OnQueryTextListener {
 
     companion object {
-        private const val KEY_QUERY = "extra_PF_0"
+        private const val EXTRA_0 = "pf.extra.0" // query
         const val SPAN_COUNT = 3
     }
 
@@ -42,7 +41,8 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        query = savedInstanceState?.getString(KEY_QUERY)
+
+        query = savedInstanceState?.getString(EXTRA_0)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +58,6 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
         pagedList.observe(this, Observer { adapter.submitList(it) })
 
         presenter.attach(adapter)
-        presenter.start()
     }
 
     override fun createAdapter() = PagingAdapter(
@@ -70,8 +69,8 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
         recyclerView.setHasFixedSize(false)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
 
         val searchItem = menu.findItem(R.id.itemSearch)
         val searchView: SearchView = searchItem.actionView as SearchView
@@ -79,12 +78,11 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
             sv.maxWidth = Int.MAX_VALUE
             sv.setOnQueryTextListener(this@PhotosFragment)
 
-            this.query?.let { q ->
+            query?.let { q ->
                 searchItem.expandActionView()
                 sv.setQuery(q, true)
             }
         }
-
     }
 
     override fun onViewHolderClick(viewHolder: RecyclerView.ViewHolder, position: Int, id: Int) {
@@ -97,6 +95,8 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
+        if (!isVisible) return true
+
         if (newText?.length == 0) {
             search(null)
             return true
@@ -104,7 +104,8 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
         return false
     }
 
-    private fun search(query: String?) {
+    private fun search(q: String?) {
+        query = q
         factory.search(query)
         pagedList.value?.dataSource?.invalidate()
     }
@@ -116,7 +117,7 @@ class PhotosFragment : BaseListFragment<PagingAdapter<Photo>>(), PhotosContract.
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(KEY_QUERY, factory.query)
+        outState.putString(EXTRA_0, query)
     }
 
     private val lookup = object : GridLayoutManager.SpanSizeLookup() {

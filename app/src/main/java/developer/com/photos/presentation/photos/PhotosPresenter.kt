@@ -20,7 +20,6 @@ class PhotosPresenter @Inject constructor(
     PhotosContract.Presenter {
     override var provider: GetableProvider<Photo>? = null
 
-    override fun start() = Unit
     override fun refresh() = Unit
 
     override fun navigateTo(position: Int) {
